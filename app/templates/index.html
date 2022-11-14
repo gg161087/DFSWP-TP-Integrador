@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Lista de Personas</h2>
+    <h3>{{ message }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>D.N.I</th>
+                    <th class="celda">Motivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in people %}
+                <tr>
+                    <th>{{ p.id }}</th>
+                    <td>{{ p.fecha }}</td>
+                    <td>{{ p.nombre }}</td>
+                    <td>{{ p.apellido }}</td>
+                    <td>{{ p.dni }}</td>
+                    <td>{{ p.motivo }}</td>
+                    <td>                            
+                        <a href="{{ url_for('index', eliminar=p.id) }}"><span class="btn_rojo">Eliminar</span></a>
+                        <a href="{{ url_for('editar_persona', person_id=p.id) }}"><span class="btn_verde">Editar</span></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>                         
+        </table>
+{% endblock %}
